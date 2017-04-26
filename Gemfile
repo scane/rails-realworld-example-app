@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '~> 5.0.2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -23,8 +23,8 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'acts-as-taggable-on', '~> 3.5.0'
-gem 'acts_as_follower', '~> 0.2.1'
+gem 'acts-as-taggable-on', '~> 4.0'
+gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'devise', '~> 4.2.0'
 gem 'jwt', '~> 1.5.4'
 gem 'rack-cors', '~> 0.4.0'
