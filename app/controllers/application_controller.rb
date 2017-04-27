@@ -1,7 +1,6 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :null_session
 
   respond_to :json
 
@@ -17,14 +16,13 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     if request.headers['Authorization'].present?
-      authenticate_or_request_with_http_token do |token|
-        begin
-          jwt_payload = JWT.decode(token, Rails.application.secrets.secret_key_base).first
+      token = request.headers['Authorization'].split(' ').last
+      begin
+        jwt_payload = JWT.decode(token, Rails.application.secrets.secret_key_base).first
 
-          @current_user_id = jwt_payload['id']
-        rescue JWT::ExpiredSignature, JWT::VerificationError, JWT::DecodeError
-          head :unauthorized
-        end
+        @current_user_id = jwt_payload['id']
+      rescue JWT::ExpiredSignature, JWT::VerificationError, JWT::DecodeError
+        head :unauthorized
       end
     end
   end

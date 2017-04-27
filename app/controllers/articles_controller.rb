@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find_by_slug!(params[:slug])
-
+    byebug
     if @article.user_id == @current_user_id
       @article.update_attributes(article_params)
 
